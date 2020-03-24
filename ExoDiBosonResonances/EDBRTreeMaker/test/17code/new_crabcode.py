@@ -11,7 +11,7 @@ for i in (open("17samplelist.txt", 'r').readlines()):
      dataset = i.replace("\n","")
      filename = i.split("/")
      if len(filename[1]) >0 :       
-        if "WJetsToLNu" in filename[1]:
+        if "WWZ_4F_" in filename[1]:
             newfilatag = "17_"+filename[1].split("_TuneCP5")[0]
 	    newfilename = filename[1].split("_TuneCP5")[0]+".py"
             submit =  submit+ "crab submit -c ./17code/17crabfolder/" + newfilename+"\n"

@@ -167,28 +167,10 @@ process.metfilterSequence = cms.Sequence(process.BadPFMuonFilter+process.BadChar
 jetsAK8puppi = "cleanPuppi"
  
 if runOnMC:
-   jecLevelsAK8chs = [
-                                   'Fall17_17Nov2017_V32_MC_L1FastJet_AK8PFchs.txt',
-                                   'Fall17_17Nov2017_V32_MC_L2Relative_AK8PFchs.txt',
-                                   'Fall17_17Nov2017_V32_MC_L3Absolute_AK8PFchs.txt'
-     ]
-   jecLevelsAK8chsGroomed = [
-                                   'Fall17_17Nov2017_V32_MC_L2Relative_AK8PFchs.txt',
-                                   'Fall17_17Nov2017_V32_MC_L3Absolute_AK8PFchs.txt'
-     ]
    jecLevelsAK8puppi = [
                                    'Fall17_17Nov2017_V32_MC_L1FastJet_AK8PFPuppi.txt',
                                    'Fall17_17Nov2017_V32_MC_L2Relative_AK8PFPuppi.txt',
                                    'Fall17_17Nov2017_V32_MC_L3Absolute_AK8PFPuppi.txt'
-     ]
-   jecLevelsAK8puppiGroomed = [
-                                   'Fall17_17Nov2017_V32_MC_L2Relative_AK8PFPuppi.txt',
-                                   'Fall17_17Nov2017_V32_MC_L3Absolute_AK8PFPuppi.txt'
-     ]
-   BjecLevelsAK4chs = [
-                                   'Fall17_17Nov2017_V32_MC_L1FastJet_AK4PFPuppi.txt',
-                                   'Fall17_17Nov2017_V32_MC_L2Relative_AK4PFPuppi.txt',
-                                   'Fall17_17Nov2017_V32_MC_L3Absolute_AK4PFPuppi.txt'
      ]
    jecLevelsAK4chs = [
                                    'Fall17_17Nov2017_V32_MC_L1FastJet_AK4PFchs.txt',
@@ -196,34 +178,11 @@ if runOnMC:
                                    'Fall17_17Nov2017_V32_MC_L3Absolute_AK4PFchs.txt'
     ]
 else:
-   jecLevelsAK8chs = [
-                                   'Fall17_17Nov2017B_V32_DATA_L1FastJet_AK8PFchs.txt',
-                                   'Fall17_17Nov2017B_V32_DATA_L2Relative_AK8PFchs.txt',
-                                   'Fall17_17Nov2017B_V32_DATA_L3Absolute_AK8PFchs.txt',
-                                   'Fall17_17Nov2017B_V32_DATA_L2L3Residual_AK8PFchs.txt'
-     ]
-   jecLevelsAK8chsGroomed = [
-                                   'Fall17_17Nov2017B_V32_DATA_L2Relative_AK8PFchs.txt',
-                                   'Fall17_17Nov2017B_V32_DATA_L3Absolute_AK8PFchs.txt',
-                                   'Fall17_17Nov2017B_V32_DATA_L2L3Residual_AK8PFchs.txt'
-     ]
    jecLevelsAK8puppi = [
                                    'Fall17_17Nov2017B_V32_DATA_L1FastJet_AK8PFPuppi.txt',
                                    'Fall17_17Nov2017B_V32_DATA_L2Relative_AK8PFPuppi.txt',
                                    'Fall17_17Nov2017B_V32_DATA_L3Absolute_AK8PFPuppi.txt',
                                    'Fall17_17Nov2017B_V32_DATA_L2L3Residual_AK8PFPuppi.txt'
-     ]
-   jecLevelsAK8puppiGroomed = [
-                                   'Fall17_17Nov2017B_V32_DATA_L2Relative_AK8PFPuppi.txt',
-                                   'Fall17_17Nov2017B_V32_DATA_L3Absolute_AK8PFPuppi.txt',
-                                   'Fall17_17Nov2017B_V32_DATA_L2L3Residual_AK8PFPuppi.txt'
-     ]
-   BjecLevelsAK4chs = [
-                                   'Fall17_17Nov2017B_V32_DATA_L1FastJet_AK4PFPuppi.txt',
-                                   'Fall17_17Nov2017B_V32_DATA_L2Relative_AK4PFPuppi.txt',
-                                   'Fall17_17Nov2017B_V32_DATA_L3Absolute_AK4PFPuppi.txt',
-                                   'Fall17_17Nov2017B_V32_DATA_L2L3Residual_AK4PFPuppi.txt'
-
      ]
    jecLevelsAK4chs = [
                                    'Fall17_17Nov2017B_V32_DATA_L1FastJet_AK4PFPuppi.txt',
@@ -292,7 +251,7 @@ process.prefiringweight = l1ECALPrefiringWeightProducer.clone(
     UseJetEMPt = cms.bool(False),
     PrefiringRateSystematicUncty = cms.double(0.2),
     SkipWarnings = False)
-process.treeDumper = cms.EDAnalyzer("EDBRTreeMaker",
+process.treeDumper = cms.EDAnalyzer("VVVTreeMaker",
                                     EDBRChannel = cms.string("VW_CHANNEL"),
                                     lhe =  cms.InputTag("externalLHEProducer"),
                                     isGen = cms.bool(False),
@@ -350,6 +309,7 @@ process.treeDumper = cms.EDAnalyzer("EDBRTreeMaker",
                                     noiseFilterSelection_eeBadScFilter = cms.string('Flag_eeBadScFilter'),
                                     noiseFilterSelection_badMuon = cms.InputTag('BadPFMuonFilter'),
                                     noiseFilterSelection_badChargedHadron = cms.InputTag('BadChargedCandidateFilter'),
+                                    CoutOrNot  = cms.bool(True)
                                     )
 
 
